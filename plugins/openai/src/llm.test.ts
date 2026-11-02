@@ -107,3 +107,10 @@ if (hasOpenAIApiKey) {
     it.skip('requires OPENAI_API_KEY', () => {});
   });
 }
+
+describe('LLM.withPerplexity', () => {
+  it('defaults to sonar-pro', () => {
+    const llm = LLM.withPerplexity({ apiKey: 'test-key' });
+    expect(llm.model).toBe('sonar-pro');
+  });
+});
