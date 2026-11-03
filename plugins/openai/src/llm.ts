@@ -339,6 +339,8 @@ export class LLM extends llm.LLM {
    * @remarks
    * `apiKey` must be set to your PerplexityAI API key, either using the argument or by setting the
    * `PERPLEXITY_API_KEY` environment variable.
+   *
+   * For the Perplexity Agent API, use `responses.LLM` from `@livekit/agents-plugin-perplexity`.
    */
   static withPerplexity(
     opts: Partial<{
@@ -358,7 +360,7 @@ export class LLM extends llm.LLM {
     }
 
     return new LLM({
-      model: 'llama-3.1-sonar-small-128k-chat',
+      model: 'sonar-pro',
       baseURL: 'https://api.perplexity.ai',
       ...opts,
     });
