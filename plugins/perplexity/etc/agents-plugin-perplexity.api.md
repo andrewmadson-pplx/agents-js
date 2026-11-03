@@ -8,9 +8,11 @@ import { AgentInference } from '@livekit/protocol';
 import { AgentSession as AgentSession_2 } from '@livekit/protocol';
 import { AudioFrame } from '@livekit/rtc-node';
 import { AudioResampler } from '@livekit/rtc-node';
-import type { Context } from '@opentelemetry/api';
+import { Context } from '@opentelemetry/api';
+import { default as default_2 } from 'ws';
 import { EventEmitter } from 'events';
 import { EventEmitter as EventEmitter_2 } from 'node:events';
+import type { EventMap } from '@livekit/typed-emitter';
 import { FrameProcessor } from '@livekit/rtc-node';
 import { JsonObject } from '@bufbuild/protobuf';
 import type { JSONSchema7 } from 'json-schema';
@@ -21,9 +23,10 @@ import { Participant } from '@livekit/rtc-node';
 import { ParticipantKind } from '@livekit/rtc-node';
 import { ReadableStream as ReadableStream_2 } from 'node:stream/web';
 import type { ReadableStreamDefaultReader as ReadableStreamDefaultReader_2 } from 'node:stream/web';
+import type { Reasoning as Reasoning_2 } from 'openai/resources/shared.js';
 import { RemoteParticipant } from '@livekit/rtc-node';
 import { Room } from '@livekit/rtc-node';
-import type { Span } from '@opentelemetry/api';
+import { Span } from '@opentelemetry/api';
 import type { TextStreamInfo } from '@livekit/rtc-node';
 import { Throws } from '@livekit/throws-transformer/throws';
 import { ThrowsPromise } from '@livekit/throws-transformer/throws';
@@ -34,6 +37,22 @@ import type { VideoFrame as VideoFrame_2 } from '@livekit/rtc-node';
 import { WebSocket as WebSocket_2 } from 'ws';
 import type { WritableStreamDefaultWriter as WritableStreamDefaultWriter_2 } from 'node:stream/web';
 import { z } from 'zod';
+
+// Warning: (ae-forgotten-export) The symbol "OpenAITool" needs to be exported by the entry point index.d.ts
+//
+// @public
+export class FetchUrl extends OpenAITool {
+    constructor(input?: FetchUrlOptions);
+    // (undocumented)
+    readonly maxUrls: number | undefined;
+    // (undocumented)
+    toToolConfig(): Record<string, unknown>;
+}
+
+// @public
+export interface FetchUrlOptions {
+    maxUrls?: number;
+}
 
 // Warning: (ae-forgotten-export) The symbol "LLM_2" needs to be exported by the entry point index.d.ts
 //
@@ -129,6 +148,38 @@ declare namespace responses {
     }
 }
 export { responses }
+
+// @public
+export type SearchType = 'web' | 'fast';
+
+// @public
+export class WebSearch extends OpenAITool {
+    constructor(input?: WebSearchOptions);
+    // (undocumented)
+    readonly filters: Record<string, unknown> | undefined;
+    // (undocumented)
+    readonly maxResults: number | undefined;
+    // (undocumented)
+    readonly maxTokens: number | undefined;
+    // (undocumented)
+    readonly maxTokensPerPage: number | undefined;
+    // (undocumented)
+    readonly searchType: SearchType | undefined;
+    // (undocumented)
+    toToolConfig(): Record<string, unknown>;
+    // (undocumented)
+    readonly userLocation: Record<string, unknown> | undefined;
+}
+
+// @public
+export interface WebSearchOptions {
+    filters?: Record<string, unknown>;
+    maxResults?: number;
+    maxTokens?: number;
+    maxTokensPerPage?: number;
+    searchType?: SearchType;
+    userLocation?: Record<string, unknown>;
+}
 
 // (No @packageDocumentation comment for this package)
 

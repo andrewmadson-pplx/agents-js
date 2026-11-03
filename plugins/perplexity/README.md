@@ -48,3 +48,16 @@ const llm = new responses.LLM({
 The Responses LLM uses `baseURL: 'https://api.perplexity.ai/v1'`, disables
 WebSocket transport, and sends the same `X-Pplx-Integration` attribution header
 on its OpenAI-compatible client.
+
+The Agent API's built-in tools run on Perplexity's servers. Pass them with your
+function tools:
+
+```ts
+import { FetchUrl, WebSearch, responses } from '@livekit/agents-plugin-perplexity';
+
+const agent = new voice.Agent({
+  instructions: 'You are a helpful assistant.',
+  llm: new responses.LLM({ model: 'openai/gpt-5.5' }),
+  tools: [new WebSearch({ maxResults: 5 }), new FetchUrl({ maxUrls: 1 })],
+});
+```
