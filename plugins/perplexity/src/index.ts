@@ -7,6 +7,13 @@ import * as responses from './responses/index.js';
 export { LLM, PERPLEXITY_BASE_URL, type LLMOptions } from './llm.js';
 export type { PerplexityChatModels, PerplexityResponsesModels } from './models.js';
 export { responses };
+export {
+  FetchUrl,
+  WebSearch,
+  type FetchUrlOptions,
+  type SearchType,
+  type WebSearchOptions,
+} from './tools.js';
 
 class PerplexityPlugin extends Plugin {
   constructor() {
